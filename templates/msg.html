@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<i class="icon-search"></i>
+        <div class="container">
+
+            {% for comment in comments.items %}
+                <div class="row">
+                
+                 <strong> {{comment.content}}   </strong> 
+                 {{comment.user.username}} 
+                 <em>{{momentjs(comment.timestamp).dist8()}}</em>
+
+                </div>
+            {% endfor %}
+
+            <div class="row">
+                <form action="/msg" method="POST">
+                    <textarea class="form-control" name="contents" placeholder="Enter a comment"></textarea>
+                     <input type="submit" value="发表留言">
+                </form>
+            </div>
+        
+         
+        {% if comments.has_prev %}<a href="{{ url_for('msgview', page =comments.prev_num) }}"><< 上一页</a>{% else %}<< 下一页{% endif %} |
+        {% if comments.has_next %}<a href="{{ url_for('msgview', page = comments.next_num) }}">上一页 >></a>{% else %}下一页 >>{% endif %}
+       </div>
+{% endblock %}

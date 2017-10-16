@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="container">
+        <h1>注册帐号</h1>
+        <br>
+        <form action="/register" method="post">
+        <div class="form-group">
+           <input type="text" placeholder="Username" name="username" value="">
+       </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" name="password" value="">
+        </div>
+       <input class="btn btn-default" type="submit" value="注册">
+        </form>
+        {% if error %}
+          <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+    </div>
+{% endblock %}

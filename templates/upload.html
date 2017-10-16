@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+{% with msgs = get_flashed_messages(category_filter=["upload"]) %}
+{% if msgs %}
+    {% for message in msgs %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+    
+<div class="page-header">
+    <h1>上传图片</h1>
+</div>
+<div class="col-md-4">
+    <form action="" method=post enctype=multipart/form-data>
+        <input type=file name=file><br/>
+        <input type=submit value=确定上传>
+    </form>
+</div>
+{% endblock %}

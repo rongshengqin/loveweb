@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="container">
+
+            <div class="row">
+                <form action="/admin" method="POST">
+                 {% for comment in comments.items %}
+                      <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="todel" value={{comment.id}}><b>{{comment.content}}</b>
+							{{comment.user.username}} 
+							{{momentjs(comment.timestamp).dist8()}}
+                        </label>
+                    </div>
+                 {% endfor %}
+                     <input type="submit" value="删除留言">
+                </form>
+            </div>
+
+
+        {% if comments.has_prev %}<a href="{{ url_for('admin', page =comments.prev_num) }}"><< 上一页</a>{% else %}<< 下一页{% endif %} |
+        {% if comments.has_next %}<a href="{{ url_for('admin', page = comments.next_num) }}">上一页 >></a>{% else %}下一页 >>{% endif %}
+       </div>
+{% endblock %}

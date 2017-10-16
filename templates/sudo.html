@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="container">
+
+            <div class="row">
+                <form action="/su" method="POST">
+                 {% for u in us.items %}
+				 {% if u.username !='admin' %}
+                      <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="todel" value={{u.id}}><b>{{u.username}}</b>
+							{{u.password}} 
+                        </label>
+                    </div>
+				{% endif %}
+                 {% endfor %}
+                     <input type="submit" value="删除用户">
+                </form>
+            </div>
+
+
+        {% if us.has_prev %}<a href="{{ url_for('sudo', page =us.prev_num) }}"><< 上一页</a>{% else %}<< 下一页{% endif %} |
+        {% if us.has_next %}<a href="{{ url_for('sudo', page = us.next_num) }}">上一页 >></a>{% else %}下一页 >>{% endif %}
+       </div>
+{% endblock %}

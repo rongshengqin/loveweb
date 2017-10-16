@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="container">
+
+            <div class="row">
+                <form action="/admin_image" method="POST">
+                 {% for im in ims.items %}
+                     <i class="icon-search"></i>
+                     <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="todel" value={{im.id}}> <img  src="../static/thumb/{{im.picture_name}}" style="width: 100%"/>
+                        </label>
+                    </div>
+                 {% endfor %}
+                     <input type="submit" value="删除图片">
+                </form>
+            </div>
+		{% if ims.has_prev %}<a href="{{ url_for('admin_image', page =ims.prev_num) }}"><< 上一页</a>{% else %}<< 下一页{% endif %} |
+        {% if ims.has_next %}<a href="{{ url_for('admin_image', page = ims.next_num) }}">上一页 >></a>{% else %}下一页 >>{% endif %}
+       </div>
+{% endblock %}

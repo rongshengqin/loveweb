@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<i class="icon-search"></i>
+        <div class="container">
+              {% for nvs in nvss.items %}
+                <div class="row">
+                
+                 <a href=/novel?url={{nvs.url}}>{{nvs.title}} <em>{{momentjs(nvs.timestamp).dist8()}}</em> </a>
+                
+                </div>
+            {% endfor %}
+        {% if nvss.has_prev %}<a href="{{ url_for('novel', page =nvss.prev_num) }}"><< Newer posts</a>{% else %}<< Newer posts{% endif %} |
+        {% if nvss.has_next %}<a href="{{ url_for('novel', page = nvss.next_num) }}">Older posts >></a>{% else %}Older posts >>{% endif %}
+       </div>
+{% endblock %}

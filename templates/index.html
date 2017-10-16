@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div data-ride="carousel" data-interval="3000" class="carousel slide" id="carousel-container">  
+         <div class="carousel-inner">  
+           
+            {% for i in range(num_img) %}
+            {% if i==0 %}
+             <div class="item active"><img  src="../static/images/{{imgs[i].picture_name}}" style="width: 100%"/></div>
+             {% else %}
+             <div class="item"><img  src="../static/images/{{imgs[i].picture_name}}" style="width: 100%"/></div>
+             {% endif %}
+             {% endfor %}
+         </div>  
+         <ol class="carousel-indicators">  
+          {% for i in range(num_img) %}
+            {% if i==0 %}
+              <li data-slide-to="0" data-target="#carousel-container" class="active"></li>  
+             {% else %}
+             <li data-slide-to="{{i}}" data-target="#carousel-container"></li>  
+             {% endif %}
+             {% endfor %}
+         </ol>  
+         <a data-slide="prev" href="#carousel-container" class="left carousel-control">  
+             <span class="glyphicon glyphicon-chevron-left"></span>  
+         </a>  
+         <a data-slide="next" href="#carousel-container" class="right carousel-control">  
+             <span class="glyphicon glyphicon-chevron-right"></span>  
+         </a>  
+     </div>  
+     
+{% endblock %}
